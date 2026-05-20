@@ -837,11 +837,8 @@
   <section class="apply">
     <span class="sec-label" data-aos="fade-up">APPLY</span>
     <h2 data-aos="fade-up" data-aos-delay="80">지금 바로 <span class="hl">상담 신청</span>하세요</h2>
-    <form class="apply-form" id="applyForm" name="apply" method="POST"
-          data-netlify="true" data-netlify-honeypot="bot-field"
-          data-aos="fade-up" data-aos-delay="140">
-      <input type="hidden" name="form-name" value="apply">
-      <p class="apply-hp"><label>이 칸은 비워두세요<input name="bot-field"></label></p>
+    <form class="apply-form" id="applyForm" data-aos="fade-up" data-aos-delay="140">
+      <p class="apply-hp"><label>이 칸은 비워두세요<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
       <input type="text" name="name" class="apply-input" placeholder="이름" autocomplete="name">
       <input type="tel" name="phone" class="apply-input" placeholder="전화번호" autocomplete="tel">
       <label class="apply-consent">
@@ -867,11 +864,17 @@
   }, { threshold:0.6 });
   document.querySelectorAll('.hl').forEach(function(el){ hlObserver.observe(el); });
 
-  // ===== 상담 신청 폼 (Netlify Forms) =====
+  // ===== 상담 신청 폼 (Google Sheets + 텔레그램) =====
+  var GAS_URL = "https://script.google.com/macros/s/AKfycbw0Wq2aspLQ3bQf5sDKJEEBtD7jDmwn9gFbdFEI8L0eovmOmXHcLo534OP39x4_OOSKow/exec";
+
   var af = document.getElementById('applyForm');
   if(af){
     af.addEventListener('submit', function(e){
       e.preventDefault();
+      // 스팸 봇 차단 (허니팟)
+      var hp = af.querySelector('[name="bot-field"]');
+      if(hp && hp.value){ return; }
+
       var nameV = (af.querySelector('[name="name"]').value || '').trim();
       var phoneV = (af.querySelector('[name="phone"]').value || '').trim();
       var consentV = af.querySelector('[name="consent"]').checked;
@@ -884,25 +887,22 @@
       function showDone(){ af.style.display='none'; if(done){ done.style.display='block'; } }
       function resetBtn(){ if(btn){ btn.disabled=false; btn.textContent='빠른 상담 신청'; } }
 
-      // 로컬(file://)에서 열었을 땐 데모로 완료 표시
-      if(location.protocol === 'file:'){ showDone(); return; }
+      // 로컬 미리보기 / URL 미설정 시 데모
+      if(location.protocol === 'file:' || GAS_URL.indexOf('여기에') === 0){
+        showDone(); return;
+      }
 
       if(btn){ btn.disabled=true; btn.textContent='신청 중...'; }
-      var body = new URLSearchParams({
-        'form-name': 'apply',
-        'name': nameV,
-        'phone': phoneV,
-        'consent': consentV ? '동의함' : '미동의'
-      }).toString();
-      fetch('/', {
+      fetch(GAS_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body
+        mode: 'no-cors',
+        body: new URLSearchParams({
+          name: nameV,
+          phone: phoneV,
+          consent: consentV ? '동의함' : '미동의'
+        })
       })
-      .then(function(r){
-        if(r.ok){ showDone(); }
-        else { alert('신청 처리 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.'); resetBtn(); }
-      })
+      .then(function(){ showDone(); })
       .catch(function(){
         alert('네트워크 오류로 신청에 실패했습니다. 잠시 후 다시 시도해주세요.'); resetBtn();
       });
