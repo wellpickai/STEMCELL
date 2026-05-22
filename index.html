@@ -118,6 +118,14 @@
     color:#999999;
   }
 
+  /* ===== 상단 상담 신청 폼 ===== */
+  .apply-top { padding:0 30px; text-align:center; }
+  .apply-top h2 {
+    margin-top:18px;
+    font-size:25px; font-weight:800; line-height:1.42;
+    color:#1A1A1A; letter-spacing:-0.02em;
+  }
+
 * { margin:0; padding:0; box-sizing:border-box; }
   body, * {
     font-family:'Pretendard', -apple-system, BlinkMacSystemFont, 'system-ui', sans-serif;
@@ -308,40 +316,44 @@
     margin-top:12px;
     font-size:14px; font-weight:400; line-height:1.7; color:#666666;
   }
-  .prog-list { margin-top:30px; text-align:left; }
+  .prog-list {
+    margin-top:24px; text-align:left;
+    display:flex; flex-wrap:wrap; justify-content:space-between;
+  }
   .prog-card {
+    width:48.5%;
     border:1px solid rgba(226,78,142,0.10);
     border-radius:12px;
     box-shadow:0 4px 12px rgba(0,0,0,0.08);
-    padding:22px 20px;
-    margin-bottom:12px;
+    padding:15px 14px;
+    margin-bottom:10px;
   }
-  .prog-card:last-child { margin-bottom:0; }
+  .prog-card:nth-child(n+3) { margin-bottom:0; }
   .prog-step-badge {
     display:inline-block;
-    font-size:12px; font-weight:800; letter-spacing:0.08em;
+    font-size:11px; font-weight:800; letter-spacing:0.06em;
     color:#FFFFFF; background:#E24E8E;
-    padding:6px 13px; border-radius:999px;
+    padding:5px 11px; border-radius:999px;
   }
   .prog-name {
-    margin-top:14px;
-    font-size:19px; font-weight:800; line-height:1.4;
+    margin-top:9px;
+    font-size:16px; font-weight:800; line-height:1.38;
     color:#1A1A1A; letter-spacing:-0.02em;
   }
   .prog-targets {
-    margin-top:14px; padding-top:14px;
+    margin-top:10px; padding-top:10px;
     border-top:1px solid rgba(226,78,142,0.14);
     list-style:none;
   }
   .prog-targets li {
     position:relative;
-    padding-left:16px; margin-bottom:7px;
-    font-size:13.5px; font-weight:400; line-height:1.55; color:#555555;
+    padding-left:13px; margin-bottom:5px;
+    font-size:12px; font-weight:400; line-height:1.5; color:#555555;
   }
   .prog-targets li:last-child { margin-bottom:0; }
   .prog-targets li::before {
-    content:""; position:absolute; left:0; top:8px;
-    width:5px; height:5px; border-radius:50%;
+    content:""; position:absolute; left:0; top:7px;
+    width:4px; height:4px; border-radius:50%;
     background:#E24E8E;
   }
 
@@ -560,6 +572,7 @@
 /* ===== 섹션 결합 - 섹션 간 여백 80px 통일 ===== */
 /* 각 섹션이 자기 배경색으로 위쪽 80px 여백을 가져, 흰 섹션 위는 흰색이 깔림 */
 .hero { padding-bottom:0; }
+.apply-top { padding-top:80px; padding-bottom:0; }
 .ba { padding-top:80px; padding-bottom:0; }
 .empathy { padding-top:44px; padding-bottom:0; }
 .facility { padding-top:80px; padding-bottom:0; }
@@ -590,6 +603,22 @@
     <div class="scroll-arrow" data-aos="fade-up" data-aos-delay="400">
       <span></span>
     </div>
+  </section>
+
+  <!-- ===== 상단 상담 신청 폼 ===== -->
+  <section class="apply-top">
+    <h2 data-aos="fade-up" data-aos-delay="80">지금 바로 <span class="hl">상담 신청</span>하세요</h2>
+    <form class="apply-form" data-aos="fade-up" data-aos-delay="140">
+      <p class="apply-hp"><label>이 칸은 비워두세요<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <input type="text" name="name" class="apply-input" placeholder="이름" autocomplete="name">
+      <input type="tel" name="phone" class="apply-input" placeholder="전화번호" autocomplete="tel">
+      <label class="apply-consent">
+        <input type="checkbox" name="consent">
+        <span>개인정보 수집·이용에 동의합니다</span>
+      </label>
+      <button type="submit" class="apply-btn">빠른 상담 신청</button>
+    </form>
+    <p class="apply-done" style="display:none;">신청이 완료되었습니다.<br>빠른 시일 내 연락드리겠습니다.</p>
   </section>
 
   <!-- ===== Before & After ===== -->
@@ -837,7 +866,7 @@
   <section class="apply">
     <span class="sec-label" data-aos="fade-up">APPLY</span>
     <h2 data-aos="fade-up" data-aos-delay="80">지금 바로 <span class="hl">상담 신청</span>하세요</h2>
-    <form class="apply-form" id="applyForm" data-aos="fade-up" data-aos-delay="140">
+    <form class="apply-form" data-aos="fade-up" data-aos-delay="140">
       <p class="apply-hp"><label>이 칸은 비워두세요<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
       <input type="text" name="name" class="apply-input" placeholder="이름" autocomplete="name">
       <input type="tel" name="phone" class="apply-input" placeholder="전화번호" autocomplete="tel">
@@ -847,7 +876,7 @@
       </label>
       <button type="submit" class="apply-btn">빠른 상담 신청</button>
     </form>
-    <p class="apply-done" id="applyDone" style="display:none;">신청이 완료되었습니다.<br>빠른 시일 내 연락드리겠습니다.</p>
+    <p class="apply-done" style="display:none;">신청이 완료되었습니다.<br>빠른 시일 내 연락드리겠습니다.</p>
   </section>
 
 </div>
@@ -865,10 +894,10 @@
   document.querySelectorAll('.hl').forEach(function(el){ hlObserver.observe(el); });
 
   // ===== 상담 신청 폼 (Google Sheets + 텔레그램) =====
-  var GAS_URL = "https://script.google.com/macros/s/AKfycbzkh2bXwUB28v4RscvJbaGBwMMX-fSXgg0eqZY87rAzxwpkcm4n7hTk8_vpyTmZ4uuoow/exec";
+  var GAS_URL = "https://script.google.com/macros/s/AKfycbyZ5EsIfS_WuSNszluX-fRNDl5S5oRELr6gwC1PqF8HE-137RpIiy81oZyPNQyDvrW9/exec";
 
-  var af = document.getElementById('applyForm');
-  if(af){
+  var applyForms = document.querySelectorAll('.apply-form');
+  Array.prototype.forEach.call(applyForms, function(af){
     af.addEventListener('submit', function(e){
       e.preventDefault();
       // 스팸 봇 차단 (허니팟)
@@ -878,12 +907,15 @@
       var nameV = (af.querySelector('[name="name"]').value || '').trim();
       var phoneV = (af.querySelector('[name="phone"]').value || '').trim();
       var consentV = af.querySelector('[name="consent"]').checked;
-      if(!nameV){ alert('이름을 입력해주세요.'); return; }
-      if(!phoneV){ alert('전화번호를 입력해주세요.'); return; }
+      if(!nameV || nameV.length < 2){ alert('이름을 정확히 입력해주세요.'); return; }
+      var phoneDigits = phoneV.replace(/[^0-9]/g, '');
+      if(phoneDigits.length < 10 || phoneDigits.length > 11 || phoneDigits.indexOf('01') !== 0){
+        alert('전화번호를 정확히 입력해주세요. (예: 010-1234-5678)'); return;
+      }
       if(!consentV){ alert('개인정보 수집·이용에 동의해주세요.'); return; }
 
       var btn = af.querySelector('.apply-btn');
-      var done = document.getElementById('applyDone');
+      var done = af.parentElement.querySelector('.apply-done');
       function showDone(){ af.style.display='none'; if(done){ done.style.display='block'; } }
       function resetBtn(){ if(btn){ btn.disabled=false; btn.textContent='빠른 상담 신청'; } }
 
@@ -895,19 +927,30 @@
       if(btn){ btn.disabled=true; btn.textContent='신청 중...'; }
       fetch(GAS_URL, {
         method: 'POST',
-        mode: 'no-cors',
-        body: new URLSearchParams({
+        body: JSON.stringify({
           name: nameV,
           phone: phoneV,
-          consent: consentV ? '동의함' : '미동의'
+          agree: consentV ? 'Y' : 'N',
+          page: location.href,
+          referrer: document.referrer || 'direct',
+          userAgent: navigator.userAgent
         })
       })
-      .then(function(){ showDone(); })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(d && d.ok){ showDone(); return; }
+        var m = '신청 처리 중 오류가 발생했습니다. 다시 시도해주세요.';
+        if(d && d.error === 'invalid_phone'){ m = '전화번호를 정확히 입력해주세요. (예: 010-1234-5678)'; }
+        else if(d && d.error === 'invalid_name'){ m = '이름을 정확히 입력해주세요.'; }
+        else if(d && d.error === 'agreement_required'){ m = '개인정보 수집·이용에 동의해주세요.'; }
+        else if(d && d.error === 'duplicate_recent'){ m = '이미 접수된 신청입니다. 잠시 후 다시 시도해주세요.'; }
+        alert(m); resetBtn();
+      })
       .catch(function(){
         alert('네트워크 오류로 신청에 실패했습니다. 잠시 후 다시 시도해주세요.'); resetBtn();
       });
     });
-  }
+  });
 </script>
 </body>
 </html>
