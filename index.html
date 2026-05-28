@@ -190,6 +190,24 @@
 
   /* ===== 시설 강조 ===== */
   .facility { padding:0 30px 80px; }
+  .cert-fac {
+    background:#FFFFFF;
+    border-radius:12px;
+    padding:16px;
+    text-align:center;
+    box-shadow:0 6px 16px rgba(0,0,0,0.18);
+  }
+  .cert-fac .cpill {
+    display:inline-block;
+    font-size:11px; font-weight:700; letter-spacing:0.05em;
+    color:#FFFFFF; background:#C13C75;
+    padding:4px 12px; border-radius:999px;
+    margin-bottom:8px;
+  }
+  .cert-fac .cmain {
+    font-size:16px; font-weight:800; color:#C13C75;
+    line-height:1.35; letter-spacing:-0.01em;
+  }
   .facility-box {
     background:linear-gradient(160deg,#E24E8E 0%,#C13C75 100%);
     border-radius:20px;
@@ -443,7 +461,7 @@
   }
   .hour-row:last-child { border-bottom:none; }
   .hour-day {
-    width:96px; flex-shrink:0;
+    width:120px; flex-shrink:0; white-space:nowrap;
     font-size:14px; font-weight:700; color:#1A1A1A;
   }
   .hour-time {
@@ -577,7 +595,7 @@
 .empathy { padding-top:44px; padding-bottom:0; }
 .facility { padding-top:80px; padding-bottom:0; }
 .equip { padding-top:80px; padding-bottom:0; }
-.program { padding-top:80px; padding-bottom:0; }
+.program { padding-top:80px; padding-bottom:44px; }
 .center { padding-top:80px; padding-bottom:0; }
 .location { padding-top:80px; padding-bottom:0; }
 .apply { padding-top:80px; padding-bottom:80px; }
@@ -610,7 +628,6 @@
     <h2 data-aos="fade-up" data-aos-delay="80">지금 바로 <span class="hl">상담 신청</span>하세요</h2>
     <form class="apply-form" data-aos="fade-up" data-aos-delay="140">
       <p class="apply-hp"><label>이 칸은 비워두세요<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-      <input type="hidden" name="type" value="stemcell">
       <input type="text" name="name" class="apply-input" placeholder="이름" autocomplete="name">
       <input type="tel" name="phone" class="apply-input" placeholder="전화번호" autocomplete="tel">
       <label class="apply-consent">
@@ -687,6 +704,10 @@
       <p class="ftitle">CELLIS LAB FACILITY</p>
       <p class="fmain">검증된 시설에서<br>안전하게 진행됩니다</p>
       <div class="facility-tags">
+        <div class="cert-fac">
+          <span class="cpill">보건복지부 지정</span>
+          <p class="cmain">'첨단재생의료 실시기관' 선정</p>
+        </div>
         <div class="facility-tag">
           <span class="tdot"></span>
           <span>대학병원급 최첨단 무균 수술실</span>
@@ -750,7 +771,7 @@
     <div class="prog-list">
         <div class="prog-card" style="background:#FFFFFF;" data-aos="fade-up" data-aos-delay="150">
           <span class="prog-step-badge">STEP 1</span>
-          <p class="prog-name">줄기세포 피부주사<br>체험 프로그램</p>
+          <p class="prog-name">알파셀&trade;<br>체험 프로그램</p>
           <ul class="prog-targets">
           <li>재생 주사를 처음 받아보는 분</li>
           <li>부담 없이 체험하고 싶은 분</li>
@@ -767,7 +788,7 @@
         </div>
         <div class="prog-card" style="background:#F6CFE0;" data-aos="fade-up" data-aos-delay="370">
           <span class="prog-step-badge">STEP 3</span>
-          <p class="prog-name">파워셀&trade; PRF<br>프로그램</p>
+          <p class="prog-name">파워셀&trade; PRF<br>집중 프로그램</p>
           <ul class="prog-targets">
           <li>피부가 얇고 회복이 더딘 분</li>
           <li>탄력 저하가 고민인 분</li>
@@ -776,7 +797,7 @@
         </div>
         <div class="prog-card" style="background:#EFB6D0;" data-aos="fade-up" data-aos-delay="480">
           <span class="prog-step-badge">STEP 4</span>
-          <p class="prog-name">바비셀&trade; SVF<br>프로그램</p>
+          <p class="prog-name">바비셀&trade; SVF<br>프리미엄 프로그램</p>
           <ul class="prog-targets">
           <li>노화가 눈에 띄게 진행된 분</li>
           <li>탄력·꺼짐·피부 밀도 저하가 고민인 분</li>
@@ -820,7 +841,7 @@
       <p class="info-title">진료 안내</p>
       <div class="hour-list">
           <div class="hour-row">
-            <span class="hour-day">월 ~ 금</span>
+            <span class="hour-day">화 ~ 금</span>
             <span class="hour-time">오전 10시 ~ 오후 7시</span>
           </div>
           <div class="hour-row">
@@ -828,7 +849,7 @@
             <span class="hour-time">오전 10시 ~ 오후 5시</span>
           </div>
           <div class="hour-row">
-            <span class="hour-day">일 · 공휴일</span>
+            <span class="hour-day">월 · 일 · 공휴일</span>
             <span class="hour-time" class="off">휴진</span>
           </div>
       </div>
@@ -895,7 +916,7 @@
   document.querySelectorAll('.hl').forEach(function(el){ hlObserver.observe(el); });
 
   // ===== 상담 신청 폼 (Google Sheets + 텔레그램) =====
-  var GAS_URL = "https://script.google.com/macros/s/AKfycbw8q1z6BrgklHKYCyBsjlczTC_E9mJYAw2jWjPzYmfU_ENKK55TzAFJlqcqAKZ8zDgq/exec";
+  var GAS_URL = "https://script.google.com/macros/s/AKfycbyZ5EsIfS_WuSNszluX-fRNDl5S5oRELr6gwC1PqF8HE-137RpIiy81oZyPNQyDvrW9/exec";
 
   var applyForms = document.querySelectorAll('.apply-form');
   Array.prototype.forEach.call(applyForms, function(af){
@@ -932,7 +953,7 @@
           name: nameV,
           phone: phoneV,
           agree: consentV ? 'Y' : 'N',
-          page: '줄기세포',
+          page: location.href,
           referrer: document.referrer || 'direct',
           userAgent: navigator.userAgent
         })
