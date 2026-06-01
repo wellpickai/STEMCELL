@@ -1,23 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1484918219795205');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>셀이즈랩 줄기세포 전문 센터</title>
@@ -935,6 +918,18 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
   // ===== 상담 신청 폼 (Google Sheets + 텔레그램) =====
   var GAS_URL = "https://script.google.com/macros/s/AKfycbyZ5EsIfS_WuSNszluX-fRNDl5S5oRELr6gwC1PqF8HE-137RpIiy81oZyPNQyDvrW9/exec";
 
+  // ===== UTM 파라미터 (유입처) 추출 =====
+  var UTM = (function(){
+    var p = new URLSearchParams(location.search);
+    return {
+      source:   (p.get('utm_source')   || '').trim(),
+      medium:   (p.get('utm_medium')   || '').trim(),
+      campaign: (p.get('utm_campaign') || '').trim(),
+      content:  (p.get('utm_content')  || '').trim(),
+      term:     (p.get('utm_term')     || '').trim()
+    };
+  })();
+
   var applyForms = document.querySelectorAll('.apply-form');
   Array.prototype.forEach.call(applyForms, function(af){
     af.addEventListener('submit', function(e){
@@ -972,15 +967,17 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
           agree: consentV ? 'Y' : 'N',
           page: location.href,
           referrer: document.referrer || 'direct',
-          userAgent: navigator.userAgent
+          userAgent: navigator.userAgent,
+          utm_source:   UTM.source,
+          utm_medium:   UTM.medium,
+          utm_campaign: UTM.campaign,
+          utm_content:  UTM.content,
+          utm_term:     UTM.term
         })
       })
-     .then(function(d){
-        if(d && d.ok){
-          if(typeof fbq === 'function'){ fbq('track', 'Lead'); }
-          showDone();
-          return;
-        }
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(d && d.ok){ showDone(); return; }
         var m = '신청 처리 중 오류가 발생했습니다. 다시 시도해주세요.';
         if(d && d.error === 'invalid_phone'){ m = '전화번호를 정확히 입력해주세요. (예: 010-1234-5678)'; }
         else if(d && d.error === 'invalid_name'){ m = '이름을 정확히 입력해주세요.'; }
