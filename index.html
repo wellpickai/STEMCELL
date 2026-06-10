@@ -1031,9 +1031,15 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
         if(btn.dataset.value === 'yes'){
           btn.classList.add('selected-yes');
           hiddenInput.value = 'Y';
+          // 제출 버튼 활성화
+          var applyBtn = btnGroup.closest('form').querySelector('.apply-btn');
+          if(applyBtn){ applyBtn.style.opacity='1'; applyBtn.style.pointerEvents='auto'; }
         } else {
           btn.classList.add('selected-no');
           hiddenInput.value = 'N';
+          // 제출 버튼 흐리게
+          var applyBtn = btnGroup.closest('form').querySelector('.apply-btn');
+          if(applyBtn){ applyBtn.style.opacity='0.4'; applyBtn.style.pointerEvents='auto'; }
         }
       });
     });
@@ -1057,6 +1063,7 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
         alert('전화번호를 정확히 입력해주세요. (예: 010-1234-5678)'); return;
       }
       if(!visitV){ alert('방문 가능 여부를 선택해주세요.'); return; }
+      if(visitV === 'N'){ alert('죄송합니다. 저희 병원은 서초구에 위치해 있어 방문 진료가 필요합니다.\n방문이 가능하실 때 다시 신청해주세요. 😊'); return; }
       if(!consentV){ alert('개인정보 수집·이용에 동의해주세요.'); return; }
 
       var btn = af.querySelector('.apply-btn');
