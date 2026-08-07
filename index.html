@@ -340,6 +340,54 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
     letter-spacing:-0.01em;
   }
 
+  /* ===== 이벤트 가격표 ===== */
+  .event { padding:64px 30px 60px; background:#FAF6F8; }
+  .event-eyebrow {
+    font-size:15px; font-weight:800; letter-spacing:0.14em; color:#E24E8E;
+  }
+  .event-eyebrow::after {
+    content:""; display:block; width:36px; height:3px;
+    background:#E24E8E; margin-top:9px; border-radius:2px;
+  }
+  .event-title {
+    margin-top:16px;
+    font-size:28px; font-weight:800; line-height:1.34;
+    color:#1A1A1A; letter-spacing:-0.03em;
+  }
+  .event-list {
+    margin-top:26px;
+    border-top:2px solid #1A1A1A;
+  }
+  .event-row {
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:22px 2px;
+    border-bottom:1px solid #E9E1E5;
+  }
+  .event-info { flex:1; min-width:0; }
+  .event-name {
+    font-size:20px; font-weight:800; line-height:1.28;
+    color:#1A1A1A; letter-spacing:-0.02em;
+  }
+  .event-desc {
+    margin-top:8px;
+    font-size:13.5px; font-weight:400; line-height:1.5; color:#8C8C8C;
+  }
+  .event-desc .em {
+    background:#FBE1EE; color:#C43C77; font-weight:600;
+    padding:1px 5px; border-radius:5px;
+  }
+  .event-price {
+    flex-shrink:0; display:flex; align-items:baseline; gap:3px; color:#E24E8E;
+  }
+  .event-price b {
+    font-size:40px; font-weight:800; line-height:1; letter-spacing:-0.03em;
+  }
+  .event-price span { font-size:14px; font-weight:700; }
+  .event-vat {
+    margin-top:12px; text-align:right;
+    font-size:11px; font-weight:400; color:#B3AAB0; letter-spacing:0.01em;
+  }
+
   /* ===== 4단계 프로그램 ===== */
   .program { padding:80px 30px; background:#FFF3F8; text-align:center; }
   .program h2 {
@@ -696,6 +744,43 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
     <div class="scroll-arrow" data-aos="fade-up" data-aos-delay="400">
       <span></span>
     </div>
+  </section>
+
+  <!-- ===== 이벤트 가격표 ===== -->
+  <section class="event">
+    <div class="event-eyebrow" data-aos="fade-up">EVENT</div>
+    <h2 class="event-title" data-aos="fade-up" data-aos-delay="80">2026년 셀이즈랩의원 이벤트</h2>
+    <div class="event-list" data-aos="fade-up" data-aos-delay="140">
+      <div class="event-row">
+        <div class="event-info">
+          <div class="event-name">줄기세포 체험가</div>
+          <div class="event-desc">PRP20cc + 수면마취</div>
+        </div>
+        <div class="event-price"><b>35</b><span>만원</span></div>
+      </div>
+      <div class="event-row">
+        <div class="event-info">
+          <div class="event-name">슈퍼셀 체험가</div>
+          <div class="event-desc"><span class="em">MCT(증폭기술)</span> + PRP40cc + 수면마취</div>
+        </div>
+        <div class="event-price"><b>90</b><span>만원</span></div>
+      </div>
+      <div class="event-row">
+        <div class="event-info">
+          <div class="event-name">리투오</div>
+          <div class="event-desc">리투오 6cc</div>
+        </div>
+        <div class="event-price"><b>59</b><span>만원</span></div>
+      </div>
+      <div class="event-row">
+        <div class="event-info">
+          <div class="event-name">셀투오 체험가</div>
+          <div class="event-desc"><span class="em">PRF(고농축줄기세포) 100cc</span> + 리투오 6cc + 수면마취</div>
+        </div>
+        <div class="event-price"><b>79</b><span>만원</span></div>
+      </div>
+    </div>
+    <div class="event-vat">VAT 별도</div>
   </section>
 
   <!-- ===== 상단 상담 신청 폼 ===== -->
