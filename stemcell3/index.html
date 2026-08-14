@@ -21,16 +21,22 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18352262927"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18352262927');
+<!-- discovery Pixel Code -->
+<script type='text/javascript'>
+    window._megoaa = window._megoaa || [];
+    window._megoaa.push({ type: 'event', name: 'pageview',acid: '37795'});
+    window._megoaa.push({ type: 'nextjump', link: []});
+    !function (t, f, a, x) {
+            if (!document.getElementById(x)) {
+                t.async = 1;t.src = a;t.id=x;f.parentNode.insertBefore(t, f);
+            }
+    }(document.createElement('script'),
+    document.getElementsByTagName('script')[0], '//asset.popin.cc/js/pixel.js?acid=37795', 'pixel_megoaa_script');
 </script>
-<!-- End Google tag -->
+<noscript>
+    <img src='//trace.popin.cc/api/bidder/track/pixel/pageview?tn=f9f2b1ef23fe2759c2cad0953029a94b&acid=37795' width='0' height='0' style='display:none' />
+</noscript>
+<!-- End of discovery Pixel Code -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 <style>
@@ -397,6 +403,27 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
     font-size:40px; font-weight:800; line-height:1; letter-spacing:-0.03em;
   }
   .event-price span { font-size:14px; font-weight:700; }
+  .event-guide {
+    margin-top:14px;
+    font-size:13.5px; font-weight:600; color:#C43C77; letter-spacing:-0.01em;
+  }
+  .event-row { cursor:pointer; -webkit-tap-highlight-color:transparent; transition:background .15s; }
+  .event-row.is-checked { background:#FBE7F1; }
+  .event-check {
+    flex-shrink:0; width:22px; height:22px; margin:0 10px 0 0;
+    -webkit-appearance:none; appearance:none;
+    border:2px solid #D8CCD3; border-radius:6px; background:#FFFFFF;
+    position:relative; cursor:pointer;
+    transition:background .15s, border-color .15s;
+  }
+  .event-check::after {
+    content:""; position:absolute; left:5.5px; top:2px;
+    width:5px; height:10px;
+    border:solid #FFFFFF; border-width:0 2.5px 2.5px 0;
+    transform:rotate(45deg); opacity:0; transition:opacity .15s;
+  }
+  .event-check:checked { background:#E24E8E; border-color:#E24E8E; }
+  .event-check:checked::after { opacity:1; }
   .event-vat {
     margin-top:12px; text-align:right;
     font-size:11px; font-weight:400; color:#B3AAB0; letter-spacing:0.01em;
@@ -764,35 +791,40 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
   <section class="event">
     <div class="event-eyebrow" data-aos="fade-up">EVENT</div>
     <h2 class="event-title" data-aos="fade-up" data-aos-delay="80">2026년 셀이즈랩의원 이벤트</h2>
+    <p class="event-guide" data-aos="fade-up" data-aos-delay="110">상담을 원하시는 시술을 체크해주세요 <span style="color:#B3AAB0;font-weight:400;">(선택 사항)</span></p>
     <div class="event-list" data-aos="fade-up" data-aos-delay="140">
-      <div class="event-row">
+      <label class="event-row">
+        <input type="checkbox" class="event-check" value="줄기세포 체험가">
         <div class="event-info">
           <div class="event-name">줄기세포 체험가</div>
           <div class="event-desc">PRP20cc + 수면마취</div>
         </div>
         <div class="event-price"><b>35</b><span>만원</span></div>
-      </div>
-      <div class="event-row">
+      </label>
+      <label class="event-row">
+        <input type="checkbox" class="event-check" value="슈퍼셀 체험가">
         <div class="event-info">
           <div class="event-name">슈퍼셀<sup class="tm">™</sup> 체험가</div>
           <div class="event-desc"><span class="em">MCT(증폭기술)</span> + PRP40cc + 수면마취</div>
         </div>
         <div class="event-price"><b>90</b><span>만원</span></div>
-      </div>
-      <div class="event-row">
+      </label>
+      <label class="event-row">
+        <input type="checkbox" class="event-check" value="리투오">
         <div class="event-info">
           <div class="event-name">리투오</div>
           <div class="event-desc">리투오 6cc</div>
         </div>
         <div class="event-price"><b>59</b><span>만원</span></div>
-      </div>
-      <div class="event-row">
+      </label>
+      <label class="event-row">
+        <input type="checkbox" class="event-check" value="셀투오 체험가">
         <div class="event-info">
           <div class="event-name">셀투오 체험가</div>
           <div class="event-desc"><span class="em">PRF(고농축줄기세포) 10cc</span><br>+ 리투오 6cc + 수면마취</div>
         </div>
         <div class="event-price"><b>79</b><span>만원</span></div>
-      </div>
+      </label>
     </div>
     <div class="event-vat">VAT 별도</div>
   </section>
@@ -1113,6 +1145,9 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
   // ===== 상담 신청 폼 (Google Sheets + 텔레그램) =====
   var GAS_URL = "https://script.google.com/macros/s/AKfycbw8q1z6BrgklHKYCyBsjlczTC_E9mJYAw2jWjPzYmfU_ENKK55TzAFJlqcqAKZ8zDgq/exec";
 
+  // 이 페이지 식별값 (시트 '유입경로' 열에 기록)
+  var LANDING = 'stemcell3';
+
   // ===== UTM 파라미터 (유입처) 추출 =====
   var UTM = (function(){
     var p = new URLSearchParams(location.search);
@@ -1149,6 +1184,22 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
     });
   });
 
+  // ===== 이벤트 항목 체크박스 =====
+  var eventChecks = document.querySelectorAll('.event-check');
+  Array.prototype.forEach.call(eventChecks, function(c){
+    c.addEventListener('change', function(){
+      var row = c.parentNode;
+      if(row && row.classList){ row.classList.toggle('is-checked', c.checked); }
+    });
+  });
+  function getInterest(){
+    var picked = [];
+    Array.prototype.forEach.call(document.querySelectorAll('.event-check'), function(c){
+      if(c.checked){ picked.push(c.value); }
+    });
+    return picked.join(', ');
+  }
+
   var applyForms = document.querySelectorAll('.apply-form');
   Array.prototype.forEach.call(applyForms, function(af){
     af.addEventListener('submit', function(e){
@@ -1175,8 +1226,9 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
       function showDone(){
         af.style.display='none'; if(done){ done.style.display='block'; }
         if(typeof fbq === 'function'){ fbq('track', 'Lead'); }
-        // Google Ads 전환: 리드 양식 제출
-        if(typeof gtag === 'function'){ gtag('event', 'conversion', {'send_to': 'AW-18352262927/llRgCJ6UjdccEI-eha9E'}); }
+        // discovery(popin) 전환: 뷰티1
+        window._megoaa = window._megoaa || [];
+        window._megoaa.push({ type: 'event', name: '뷰티1', acid: '37795', pxd: '1707888582873806' });
       }
       function resetBtn(){ if(btn){ btn.disabled=false; btn.textContent='빠른 상담 신청'; } }
 
@@ -1193,6 +1245,8 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
           phone: phoneV,
           visit: visitV,
           agree: consentV ? 'Y' : 'N',
+          landing: LANDING,
+          interest: getInterest(),
           page: location.href,
           referrer: document.referrer || 'direct',
           userAgent: navigator.userAgent,
