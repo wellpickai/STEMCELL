@@ -829,7 +829,7 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
     <form class="apply-form" data-aos="fade-up" data-aos-delay="140">
       <p class="apply-hp"><label>이 칸은 비워두세요<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
       <input type="text" name="name" class="apply-input" placeholder="이름" autocomplete="name">
-      <input type="tel" name="phone" class="apply-input" placeholder="전화번호" autocomplete="tel">
+      <input type="tel" name="phone" class="apply-input" placeholder="010-0000-0000" autocomplete="tel" inputmode="numeric" maxlength="13">
       <div class="visit-block">
         <p class="visit-notice-text">저희 병원은 <strong>'서초구'</strong>에 위치한 줄기세포 전문병원입니다.<br>전화상담 이후 방문이 가능하신가요?</p>
         <div class="visit-btns">
@@ -1104,7 +1104,7 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
     <form class="apply-form" data-aos="fade-up" data-aos-delay="140">
       <p class="apply-hp"><label>이 칸은 비워두세요<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
       <input type="text" name="name" class="apply-input" placeholder="이름" autocomplete="name">
-      <input type="tel" name="phone" class="apply-input" placeholder="전화번호" autocomplete="tel">
+      <input type="tel" name="phone" class="apply-input" placeholder="010-0000-0000" autocomplete="tel" inputmode="numeric" maxlength="13">
       <div class="visit-block">
         <p class="visit-notice-text">저희 병원은 <strong>'서초구'</strong>에 위치한 줄기세포 전문병원입니다.<br>전화상담 이후 방문이 가능하신가요?</p>
         <div class="visit-btns">
@@ -1178,6 +1178,23 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
     });
   });
 
+  // ===== 전화번호 자동 하이픈 (000-0000-0000, 최대 11자리) =====
+  function formatPhone(v){
+    var d = (v || '').replace(/[^0-9]/g, '').slice(0, 11);
+    if(d.length < 4){ return d; }
+    if(d.length < 8){ return d.slice(0,3) + '-' + d.slice(3); }
+    return d.slice(0,3) + '-' + d.slice(3,7) + '-' + d.slice(7);
+  }
+  var phoneInputs = document.querySelectorAll('.apply-form [name="phone"]');
+  Array.prototype.forEach.call(phoneInputs, function(pi){
+    pi.addEventListener('input', function(){
+      var atEnd = (pi.selectionStart === pi.value.length);
+      pi.value = formatPhone(pi.value);
+      if(atEnd){ try { pi.setSelectionRange(pi.value.length, pi.value.length); } catch(e){} }
+    });
+    pi.addEventListener('blur', function(){ pi.value = formatPhone(pi.value); });
+  });
+
   // ===== 이벤트 항목 체크박스 =====
   var eventChecks = document.querySelectorAll('.event-check');
   Array.prototype.forEach.call(eventChecks, function(c){
@@ -1208,8 +1225,8 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
       var consentV = af.querySelector('[name="consent"]').checked;
       if(!nameV || nameV.length < 2){ alert('이름을 정확히 입력해주세요.'); return; }
       var phoneDigits = phoneV.replace(/[^0-9]/g, '');
-      if(phoneDigits.length < 10 || phoneDigits.length > 11 || phoneDigits.indexOf('01') !== 0){
-        alert('전화번호를 정확히 입력해주세요. (예: 010-1234-5678)'); return;
+      if(!/^\d{3}-\d{4}-\d{4}$/.test(phoneV) || phoneDigits.indexOf('01') !== 0){
+        alert('전화번호를 000-0000-0000 형식으로 정확히 입력해주세요. (예: 010-1234-5678)'); return;
       }
       if(!visitV){ alert('방문 가능 여부를 선택해주세요.'); return; }
       if(visitV === 'N'){ alert('죄송합니다. 저희 병원은 서초구에 위치해 있어 방문 진료가 필요합니다.\n방문이 가능하실 때 다시 신청해주세요. 😊'); return; }
