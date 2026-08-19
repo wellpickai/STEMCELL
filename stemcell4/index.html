@@ -14,11 +14,11 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1484918219795205');
+fbq('init', '766125245520612');
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
+src="https://www.facebook.com/tr?id=766125245520612&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 <!-- Google tag (gtag.js) -->
@@ -1236,7 +1236,10 @@ src="https://www.facebook.com/tr?id=1484918219795205&ev=PageView&noscript=1"
       var done = af.parentElement.querySelector('.apply-done');
       function showDone(){
         af.style.display='none'; if(done){ done.style.display='block'; }
-        if(typeof fbq === 'function'){ fbq('track', 'Lead'); }
+        if(typeof fbq === 'function'){
+          fbq('track', 'Lead');
+          fbq('track', 'CompleteRegistration');
+        }
         // Google Ads 전환: 리드 양식 제출
         if(typeof gtag === 'function'){ gtag('event', 'conversion', {'send_to': 'AW-18352262927/llRgCJ6UjdccEI-eha9E'}); }
       }
